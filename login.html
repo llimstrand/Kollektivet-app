@@ -27,13 +27,51 @@
             border-top-left-radius: 30px;
             border-top-right-radius: 30px;
             height: 550px;
+            color: #065C56;
+            font-size: xx-large;
+        }
+
+        .tekstboks {
+            -webkit-appearance: none;
+            border-radius: 30px;
+            border: 2px solid #065C56;
+            height: 50px;
+            width: 80%;
+        }
+
+        .login {
+            background-color: #ff9f1c;
+            border: none;
+            color: white;
+            border-radius: 30px;
+            padding: 15px;
+            margin-left: 62%;
+        }
+
+        .nybruker {
+            font-size: medium;
+            color: #065C56;
         }
     </style>
 <body>
 <p> <h1>Kollektivet</h1> </p>
 
 <div class="boks">
-    Logg inn
+    <p>Logg inn</p>
+
+    <form>
+        <p><input placeholder=" Brukernavn" class="tekstboks" type="text"></p>
+        <p><input placeholder=" Passord" class="tekstboks" type="password"></p>
+    </form>
+
+    <p>
+        <button class="login"><a href="oppgaver.html" style="color: white; text-decoration: none">Logg inn</a> </button>
+    </p> <br> <br>
+
+    <p class="nybruker"> Ny bruker?
+        <a href="registrer.html" style="text-decoration: underline; color: #065C56">Registrer her</a>
+    </p>
+
 </div>
 
 
