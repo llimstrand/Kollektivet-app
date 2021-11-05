@@ -6,10 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body,html{
+        *{
             margin: 0;
             padding: 0;
             font-family: Bahnschrift;
+        }
+
+        header{
+            background-color: #065c56;
+            text-align: center;
+
+        }
+        h1{
+            color: white;
         }
 
         footer{
@@ -52,8 +61,108 @@
             background-color: #ff9f1c;
         }
 
+        .navigering{
+            width: 100%;
+            background-color: white;
+        }
+
+        .tabs{
+            display: inline;
+            text-align: center;
+            width: 33%;
+        }
+
+        .tabs a{
+            text-decoration: none;
+            color: black;
+        }
+
+        .todos{
+            display: inline-flex;
+            background-color: #2ec4b6;
+            border-radius: 5px;
+            width: 90%;
+        }
+        .thisWeek{
+            padding: 15px;
+        }
+        .todos a{
+            float: right;
+        }
+        .leggTil {
+            background-color: #ff9f1c;
+            border: 1px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 41px;
+            color: white;
+        }
     </style>
     <body>
+<header>
+    <h1>Oppgaver</h1>
+    <div class="navigering">
+    <ul>
+        <li class="tabs"><a href="">Mine oppgaver</a></li>
+        <li class="tabs"><a href="">Alles oppgaver</a></li>
+        <li class="tabs"><a href="">Tidligere</a></li>
+    </ul>
+    </div>
+</header>
+<div class="thisWeek">
+    <h3>Denne uken</h3>
+    <div class="todos">
+        <input type="radio">
+        <p>Vask badet</p>
+        <a href="">-></a>
+    </div>
+    <br>
+    <div class="todos">
+        <input type="radio">
+        <p>Vask kjøkken</p>
+        <a href="">-></a>
+    </div>
+    <br>
+    <div class="todos">
+        <input type="radio">
+        <p>Ta ut søpla</p>
+        <a href="">-></a>
+    </div>
+    <br>
+    <div class="todos">
+        <input type="radio">
+        <p>Rydd gangen</p>
+        <a href="">-></a>
+    </div>
+</div>
+<div class="thisWeek">
+    <h3>Neste uke</h3>
+    <div class="todos">
+        <input type="radio">
+        <p>Vask badet</p>
+        <a href="">-></a>
+    </div>
+    <br>
+    <div class="todos">
+        <input type="radio">
+        <p>Vask kjøkken</p>
+        <a href="">-></a>
+    </div>
+    <br>
+    <div class="todos">
+        <input type="radio">
+        <p>Ta ut søpla</p>
+        <a href="">-></a>
+    </div>
+    <br>
+    <div class="todos">
+        <input type="radio">
+        <p>Rydd gangen</p>
+        <a href="">-></a>
+    </div>
+</div>
+<button class="leggTil">+</button>
 <footer>
     <nav>
         <a class="current" href="#">Oppgaver</a>
