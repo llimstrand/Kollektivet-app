@@ -1,1 +1,293 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Legg til Oppgaver</title>
+    <style media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Bahnschrift;
+        }
+        body{
+            text-align: center;
+            color: #065c56;
+        }
 
+        header{
+            background-color: #065c56;
+            text-align: center;
+        }
+        h1{
+            color: white;
+        }
+
+        footer{
+            border-top: 1px solid gray;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: white;
+            height: 10%;
+        }
+
+        nav{
+            display: flex;
+            column: flex-direction;
+            grid-area: nav;
+            flex-direction: row;
+            height: 100%;
+        }
+
+        nav a{
+            display: flex;
+            color: grey;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 14px;
+            flex: 1;
+        }
+
+        nav a:hover{
+            font-size: 16px;
+            color: white;
+            background-color: #ff9f1c;
+        }
+
+        .current{
+            font-size: 16px;
+            color: white;
+            background-color: #ff9f1c;
+        }
+
+        .navigering{
+            display: flex;
+            column: flex-direction;
+            grid-area: nav;
+            flex-direction: row;
+            background-color: #065c56;
+        }
+
+        .tabs{
+            display: flex;
+            color: black;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 18px;
+            flex: 1;
+            background-color: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .tabs2{
+            display: flex;
+            color: black;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 18px;
+            flex: 1;
+            background-color: white;
+            border-radius: 20px 20px 0 0;
+            opacity: 50%;
+        }
+
+        .navigering a:hover{
+            opacity: 100%;
+        }
+        .title{
+            display: inline-flex;
+            width: 100%;
+            margin-bottom: 2%;
+        }
+
+        #godta{
+            width: 50px;
+            height: 50px;
+            float: right;
+            padding-right: 10px;
+
+        }
+        #slett{
+            width: 50px;
+            height: 50px;
+            float: left;
+            padding-left: 10px;
+        }
+        .slettPos{
+            width: 50%;
+        }
+        .godtaPos{
+            width: 50%;
+        }
+
+        #inpTODO{
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            width: 70%;
+        }
+        .hoved{
+            width: 70%;
+            margin: 0 15% 0 15%;
+        }
+        .side{
+            width: 100%;
+            display: inline-block;
+        }
+        .side p{
+            float: left;
+        }
+        .side input{
+            float: right;
+        }
+        #typeText{
+            width: 100%;
+        }
+        select{
+            width: 100%;
+            height: 6%;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <h1>Oppgave</h1>
+    <div class="title">
+        <div class="slettPos">
+            <a href="oppgaver.html"><img src="redx.png" alt="" id="slett"></a>
+        </div>
+        <div class="godtaPos">
+            <a href="oppgaver.html"><img src="greencheck.png" alt="" id="godta"></a>
+        </div>
+    </div>
+</header>
+<div class="navigering">
+    <a class="tabs" href="">Ny oppgave</a>
+    <a class="tabs2" href="">Ny hendelse</a>
+</div>
+<br>
+
+<input type="text" id="inpTODO" placeholder="Hva må jeg huske å gjøre?" autofocus>
+<br>
+<br>
+
+<section class="hoved">
+    <div class="side">
+        <p>Uke</p>
+        <input type="week" name="" value="">
+    </div>
+    <br>
+    <br>
+    <div class="side">
+        <p>Definert dag</p>
+        <input type="checkbox" name="" value="">
+    </div>
+    <br>
+    <br>
+    <textarea id="typeText" placeholder="Beskrivelse" rows="6"></textarea>
+    <br>
+    <br>
+    <select>
+        <option value="Marie(meg)">Marie (meg)</option>
+        <option value="Tor">Tor</option>
+        <option value="Sofie">Sofie</option>
+        <option value="Fredrik">Fredrik</option>
+        <option value="Annen hver">Annen hver</option>
+    </select>
+    <br>
+    <br>
+    <select>
+        <option value="Gjenta ukentlig">Gjenta ukentlig</option>
+        <option value="Gjenta månedlig">Gjenta månedlig</option>
+        <option value="Aldri gjenta">Aldri gjenta</option>
+    </select>
+    <br>
+    <br>
+    <select>
+        <option value="Grønn">Grønn</option>
+        <option value="Rosa">Rosa</option>
+        <option value="Blå">Blå</option>
+        <option value="Gul">Gul</option>
+        <option value="Oransje">Oransje</option>
+    </select>
+</section>
+
+
+<footer>
+    <nav>
+        <a class="current" href="oppgaver.html">Oppgaver</a>
+        <a href="kalender.html">Kalender</a>
+        <a href="chat.html">Chat</a>
+        <a href="personalia.html">Personalia</a>
+    </nav>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAwvAa3eebvLguf3r67sYeEET24Jm0K4CM",
+        authDomain: "todos-a09b1.firebaseapp.com",
+        databaseURL: "https://todos-a09b1.firebaseio.com",
+        projectId: "todos-a09b1",
+        storageBucket: "todos-a09b1.appspot.com",
+        messagingSenderId: "1000406779047"
+    };
+    firebase.initializeApp(config);
+</script>
+<script>
+
+    var inpTODO = document.getElementById("inpTODO")
+    var todolist = document.getElementById("todolist")
+
+    var database = firebase.database();
+    var todos = database.ref("todos");
+
+    function lagreTodo(){
+        todos.push({
+            tekst: inpTODO.value,
+            done: false
+        })
+
+        inpTODO.value = "";
+        inpTODO.focus();
+    }
+
+    function slett(pk) {
+        var todo = todos.child(pk);
+        todo.remove();
+        var div = document.getElementById(pk);
+        todolist.removeChild(div);
+    }
+
+    function visTodo(snap){
+
+        var pk = snap.key;
+        var todo = snap.val();
+
+        todolist.innerHTML += `
+			<div class="todos" id="${pk}">
+			<input type="checkbox" id="${todo.tekst}">
+			<label for="${todo.tekst}"></label>
+			<label class="todolabel" >${todo.tekst}</label>
+			<label class="delete" onclick="slett('${pk}')">X</label>
+      <a href="">></a>
+			</div>
+			`;
+    }
+
+    inpTODO.onchange = lagreTodo;
+    todos.on("child_added",visTodo)
+
+</script>
+</body>
+</html>
