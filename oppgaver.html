@@ -54,7 +54,7 @@
             color: white;
             background-color: #ff9f1c;
         }
-        
+
         .current{
             font-size: 16px;
             color: white;
@@ -66,7 +66,6 @@
             column: flex-direction;
             grid-area: nav;
             flex-direction: row;
-            height: 100%;
             background-color: #065c56;
         }
 
@@ -160,6 +159,9 @@
             color: #065c56;
             font-size: 3.5rem;
         }
+        .delete{
+            cursor: pointer;
+        }
         .thisWeek{
             padding: 15px;
             text-align: center;
@@ -189,43 +191,24 @@
             border-color: black;
             cursor: pointer;
         }
+        #inpTODO{
+            visibility: hidden;
+        }
     </style>
-    <body>
+<body>
 <header>
     <h1>Oppgaver</h1>
 </header>
 <div class="navigering">
-        <a class="tabs" href="">Mine oppgaver</a>
-        <a class="tabs2" href="">Alles oppgaver</a>
-        <a class="tabs2" href="">Tidligere</a>
+    <a class="tabs" href="">Mine oppgaver</a>
+    <a class="tabs2" href="">Alles oppgaver</a>
+    <a class="tabs2" href="">Tidligere</a>
 </div>
 <br>
 <div class="thisWeek">
     <h3>Denne uken</h3>
-    <div class="todos">
-        <input type="checkbox" checked id="checkbox" />
-        <label for="checkbox"></label>
-        <p>Vask badet</p>
-        <a href="">></a>
-    </div>
-    <div class="todos">
-        <input type="checkbox" checked id="checkbox1" />
-        <label for="checkbox1"></label>
-        <p>Vask kjøkken</p>
-        <a href="">></a>
-    </div>
-    <div class="todos">
-        <input type="checkbox" id="checkbox2" />
-        <label for="checkbox2"></label>
-        <p>Ta ut søpla</p>
-        <a href="">></a>
-    </div>
-    <div class="todos">
-        <input type="checkbox" id="checkbox3" />
-        <label for="checkbox3"></label>
-        <p>Rydd gangen</p>
-        <a href="">></a>
-    </div>
+    <section id="todolist">
+    </section>
 </div>
 <div class="thisWeek">
     <h3>Neste uke</h3>
@@ -259,9 +242,9 @@
 <br>
 <br>
 <br>
-<br>
+<input type="text" id="inpTODO" placeholder="Hva må jeg huske å gjøre?" autofocus>
 <div class="wrapper">
-    <button class="leggTil">+</button>
+    <a href="leggtil.html"><button class="leggTil">+</button></a>
 </div>
 
 <footer>
@@ -273,5 +256,63 @@
     </nav>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAwvAa3eebvLguf3r67sYeEET24Jm0K4CM",
+        authDomain: "todos-a09b1.firebaseapp.com",
+        databaseURL: "https://todos-a09b1.firebaseio.com",
+        projectId: "todos-a09b1",
+        storageBucket: "todos-a09b1.appspot.com",
+        messagingSenderId: "1000406779047"
+    };
+    firebase.initializeApp(config);
+</script>
+<script>
+
+    var inpTODO = document.getElementById("inpTODO")
+    var todolist = document.getElementById("todolist")
+
+    var database = firebase.database();
+    var todos = database.ref("todos");
+
+    function lagreTodo(){
+        todos.push({
+            tekst: inpTODO.value,
+            done: false
+        })
+
+        inpTODO.value = "";
+        inpTODO.focus();
+    }
+
+    function slett(pk) {
+        var todo = todos.child(pk);
+        todo.remove();
+        var div = document.getElementById(pk);
+        todolist.removeChild(div);
+    }
+
+    function visTodo(snap){
+
+        var pk = snap.key;
+        var todo = snap.val();
+
+        todolist.innerHTML += `
+    <div class="todos" id="${pk}">
+    <input type="checkbox" id="${todo.tekst}">
+    <label for="${todo.tekst}"></label>
+    <p>${todo.tekst}</p>
+    <p class="delete" onclick="slett('${pk}')">X</p>
+    <a href="">></a>
+    </div>
+    `;
+    }
+
+    inpTODO.onchange = lagreTodo;
+    todos.on("child_added",visTodo)
+
+</script>
 </body>
 </html>
