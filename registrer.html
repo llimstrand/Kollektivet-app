@@ -1,93 +1,78 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 
     <style>
-    body{
-        background-color: #065c56;
-        font-family: Bahnschrift;
-        padding: 0;
-        margin: 0;
-    }
-    h1{
-        color: #cbf3f0;
-        text-align: center;
-        font-size: xxx-large;
-    }
-    .reg{
-        text-align: center;
-        background-color: #cbf3f0;
-        color: #065c56;
-        font-size: xx-large;
-
-    }
-    .reg{
-        background-color: #cbf3f0;
-        border-top-left-radius: 40px;
-        border-top-right-radius: 40px;
-        text-align: center;
-        padding-top: 6%;
-        height: 550px;
-        position: absolute;
-        width: 100%;
-
-
-    }
-    .tekstboks{
-        text-align: center;
-        border-radius: 30px;
-        border-color: #065c56;
-        border: 2px solid #065c56;
-        height: 50px;
-        width: 80%;
-        background-color: #cbf3f0;
-        font-size: xx-large;
-        color: #065c56;
-    }
-    .registrer{
-        background-color: #ff9f1c;
-        color: white;
-        border: none;
-        cursor: pointer;
-        width: 140px;
-        height: 50px;
-        border-radius: 30px;
-        margin: 17%;
-        margin-left: 55%;
-        font-size: x-large;
-    }
-    .logginn{
-        background-color: #cbf3f0;
-        color: #065c56;
-        border: 2px solid #065c56;
-        cursor: pointer;
-        width: 250px;
-        height: 50px;
-        border-radius: 30px;
-        padding-left: 100px;
-        margin-top: 20px;
-        font-size: x-large;
-
-    }
+        body, html{
+            background-color: #065c56;
+            font-family: Bahnschrift;
+            padding: 0;
+            margin: 0;
+        }
+        h1{
+            color: #cbf3f0;
+            text-align: center;
+            font-size: xxx-large;
+        }
+        .reg{
+            background-color: #cbf3f0;
+            color: #065c56;
+            font-size: xx-large;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            text-align: center;
+            height: 550px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+        .tekstboks{
+            border-radius: 30px;
+            border: 2px solid #065c56;
+            height: 50px;
+            width: 80%;
+            -webkit-appearance: none;
+        }
+        .registrer{
+            background-color: #ff9f1c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 30px;
+            margin-left: 62%;
+        }
+        .logginn{
+            color: #065c56;
+            cursor: pointer;
+            font-size: medium;
+        }
     </style>
 
 <body>
 
-<h1>Kollektivet</h1>
-
+<p><h1>Kollektivet</h1></p>
 
 <div class="reg">
-    <h3>Registrer bruker</h3>
+    <p>Registrer bruker</p>
 
-    <p><input placeholder="E-postadresse" class="tekstboks" type="email" </p>
-    <p><input placeholder="Passord" class="tekstboks" type="password" </p>
-    <p><input placeholder="Gjenta passord" class="tekstboks" type="password" </p>
+    <form>
+        <p><input placeholder="E-postadresse" class="tekstboks" type="email" </p>
+        <p><input placeholder="Passord" class="tekstboks" type="password" </p>
+        <p><input placeholder="Gjenta passord" class="tekstboks" type="password" </p>
+    </form>
 
-    <button type="submit" class="registrer">Registrer</button>
-
-    <button type="button" class="logginn">Logg inn</button>
-
+    <p>
+        <button class="registrer"><a href="personalia.html" style="color: white; text-decoration: none">Registrer</a></button>
+    </p>
+    <br>
+    <p class="logginn"> Allerede bruker?
+        <a href="login.html" style="text-decoration: underline; color: #065c56">Logg inn</a>
+    </p>
 </div>
 
 

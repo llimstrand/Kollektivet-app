@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Bahnschrift;
+    }
+
+    footer {
+      border-top: 1px solid gray;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: white;
+      height: 10%;
+    }
+
+    nav {
+      display: flex;
+      column: flex-direction;
+      grid-area: nav;
+      flex-direction: row;
+      height: 100%;
+    }
+
+    nav a {
+      display: flex;
+      color: grey;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-size: 14px;
+      flex: 1;
+    }
+
+    nav a:hover {
+      font-size: 16px;
+      color: white;
+      background-color: #ff9f1c;
+    }
+
+    .current {
+      font-size: 16px;
+      color: white;
+      background-color: #ff9f1c;
+    }
+
+    .navigering {
+      display: flex;
+      column: flex-direction;
+      grid-area: nav;
+      flex-direction: row;
+      color: #065c56;
+      height: 100%;
+    }
+
+    .tabs {
+      display: flex;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-size: 18px;
+      flex: 1;
+    }
+
+    .navigering button {
+      border: none;
+      background-color: white;
+      color: #065c56;
+    }
+
+    header {
+      height: 10%;
+    }
+
+    #inpTODO {
+      visibility: hidden;
+    }
+
+    .dropbtn {
+      color: white;
+      border: none;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 220px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border: 2.5px solid #065c56;
+      border-radius: 15px;
+    }
+
+    .dropdown-content a {
+      color: #065c56;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      margin-left: 25px;
+      margin-right: 25px;
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      cursor: pointer;
+    }
+    .top{
+      margin-top: 25px;
+    }
+    .bottom{
+      margin-bottom: 25px;
+      margin-top: 25px;
+      border-radius: 7px;
+      opacity: 0.7;
+    }
+    .bottom:hover{
+      opacity: 1;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <section id="todolist">
+
+    </section>
+  </header>
+  <input type="text" id="inpTODO" placeholder="Hva må jeg huske å gjøre?" autofocus>
+  <footer>
+    <nav>
+      <a class="current" href="oppgaver.html">Oppgaver</a>
+      <a href="kalender.html">Kalender</a>
+      <a href="chat.html">Chat</a>
+      <a href="personalia.html">Personalia</a>
+    </nav>
+  </footer>
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAwvAa3eebvLguf3r67sYeEET24Jm0K4CM",
+      authDomain: "todos-a09b1.firebaseapp.com",
+      databaseURL: "https://todos-a09b1.firebaseio.com",
+      projectId: "todos-a09b1",
+      storageBucket: "todos-a09b1.appspot.com",
+      messagingSenderId: "1000406779047"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script>
+    var inpTODO = document.getElementById("inpTODO")
+    var todolist = document.getElementById("todolist")
+
+    var database = firebase.database();
+    var todos = database.ref("todos");
+
+    function endreVerdi() {
+      this.style.display = "none";
+      var tekst = this.value;
+      var label = this.parentElement.querySelector(".todolabel");
+      label.innerText = tekst;
+      label.style.display = "block";
+    }
+
+    function edit() {
+      this.style.display = "none";
+      var tekst = this.innerText;
+      var inputFelt = this.parentElement.querySelector("editItem");
+      inputFelt.value = tekst;
+      inputFelt.style.display = "block";
+      inputFelt.focus();
+
+      inputFelt.onblur = endreVerdi;
+      inputFelt.onchange = endreVerdi;
+    }
+
+    var labels = document.querySelectorAll("#todolist > div > label.todolabel");
+    for (var label of labels) {
+      label.ondblclick = edit;
+    }
+
+    function lagreTodo() {
+      todos.push({
+        tekst: inpTODO.value,
+        done: false
+      })
+
+      inpTODO.value = "";
+      inpTODO.focus();
+    }
+
+    function slett(pk) {
+      var todo = todos.child(pk);
+      todo.remove();
+      var div = document.getElementById(pk);
+      todolist.removeChild(div);
+    }
+
+    function edit(pk) {
+      var todo = todos.child(pk);
+
+      var label = document.querySelector(`#${pk} .todolabel`);
+      label.style.display = "none";
+      var tekst = label.innerText;
+
+      var inputfelt = document.querySelector(`#${pk} .editItem`);
+      inputfelt.style.display = "block";
+      inputfelt.value = tekst;
+      inputfelt.focus();
+
+      inputfelt.onblur = function() {
+        inputfelt.style.display = "none";
+        label.style.display = "block";
+      };
+
+      inputfelt.onchange = function() {
+        todo.update({
+          tekst: inputfelt.value
+        });
+        inputfelt.style.display = "none";
+        label.style.display = "block";
+        label.innerText = inputfelt.value;
+      };
+
+    }
+
+    function visTodo(snap) {
+
+      var pk = snap.key;
+      var todo = snap.val();
+
+      todolist.innerHTML += `
+			<div class="navigering">
+      <div class="tabs">
+        <button type="button" name="button">GÅ TILBAKE</button>
+      </div>
+      <div class="tabs">
+        <input type="text" class="editItem" style="display:none">Vask Badet</input>
+      </div>
+      <div class="tabs">
+      <div class="dropdown" style="float:right;">
+        <button class="dropbtn">REDIGER</button>
+        <div class="dropdown-content" style="right:0;">
+        <a href="" class="top"><input type="checkbox" style="display:none">Fullfør oppgave</input></a>
+        <a href=""><label class="todolabel">Rediger oppgave</label></a>
+        <a href=""><p>Kopier oppgave</p></a>
+        <a href="" class="bottom" style="background-color: #ff9f1c; color:white;"><label class="delete">Slett oppgave</label></a>
+        </div>
+      </div>
+      </div>
+			</div>
+			`;
+    }
+
+    inpTODO.onchange = lagreTodo;
+    todos.on("child_added", visTodo)
+  </script>
+</body>
+
+</html>
