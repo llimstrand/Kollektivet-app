@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 
+    <style>
+        body, html{
+            font-family: Bahnschrift;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #065c56;
+        }
+    .pil{
+        color: #065c56;
+        text-decoration: none;
+        position: absolute;
+        left: 10%;
+        font-size: xx-large;
+        top: 2.5%;
+    }
+    .tillat{
+        background-color: #dfebe9;
+        border-top: 1px solid #065c56;
+        border-bottom: 1px solid #065c56;
+        width: 80%;
+        margin: auto;
+        margin-bottom: 5%;
+        padding: 20px;
+        text-align: left;
+    }
+    img{
+        padding-right: 10%;
+        padding-top: 3px;
+        position: absolute;
+        right: 0;
+
+
+    }
+    .alt p{
+        background-color: #dfebe9;
+        width: 80%;
+        margin: auto;
+        margin-bottom: 2%;
+        padding: 20px;
+        text-align: left;
+    }
+    #box{
+        display: none;
+    }
+    </style>
+
+<body>
+<h2>
+    <a class="pil" href="innstillinger.html"> < </a>
+    Varslinger og lyd
+</h2>
+
+<p class="tillat">
+    Tillat push varslinger
+
+
+    <img  id="myImage" onclick="changeImage()" src="off2.jpg" height="15" width="30"/>
+
+</p>
+<br>
+<div class="alt" id="box">
+    <p>Kommentarer <img  src="on2.jpg" height="15" width="30"/></p>
+    <p>Nye oppgaver <img  src="on2.jpg" height="15" width="30"/></p>
+    <p>Påminnesle oppgaver <img   src="on2.jpg" height="15" width="30"/></p>
+    <p>Chat <img   src="on2.jpg" height="15" width="30"/></p>
+    <p>Nye hendelsen <img   src="on2.jpg" height="15" width="30"/></p>
+</div>
+
+<script>
+    function changeImage() {
+        var image = document.getElementById('myImage');
+        if (image.src.match("on")) {
+            image.src = "off2.jpg";
+            document.getElementById("box").style.display = "none";
+        } else {
+            image.src = "on2.jpg";
+            document.getElementById("box").style.display = "block";
+        }
+
+    }
+
+</script>
+
+
+</body>
+</html>
