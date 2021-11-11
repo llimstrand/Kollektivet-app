@@ -61,13 +61,13 @@
     <p>Registrer bruker</p>
 
     <form>
-        <p><input placeholder="E-postadresse" class="tekstboks" type="email" </p>
-        <p><input placeholder="Passord" class="tekstboks" type="password" </p>
+        <p><input placeholder="E-postadresse" class="tekstboks" id="email" type="email" </p>
+        <p><input placeholder="Passord" class="tekstboks" type="password" id="pass" </p>
         <p><input placeholder="Gjenta passord" class="tekstboks" type="password" </p>
     </form>
 
     <p>
-        <button class="registrer"><a href="personalia.html" style="color: white; text-decoration: none">Registrer</a></button>
+        <button class="registrer" id="signup">Registrer</button>
     </p>
     <br>
     <p class="logginn"> Allerede bruker?
@@ -75,6 +75,49 @@
     </p>
 </div>
 
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyC-h5KwaI2lRtQiK4vzAg0y2ODCEAcAm4Y",
+        authDomain: "registrer-loggin.firebaseapp.com",
+        databaseURL: "https://registrer-loggin-default-rtdb.europe-west1.firebasedatabase.app/",
+        projectId: "registrer-loggin",
+        storageBucket: "registrer-loggin.appspot.com",
+        messagingSenderId: "753564831618",
+        appId: "1:753564831618:web:abfe5116635b66e141099b"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("signup").addEventListener('click', function(){
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("pass").value;
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+
+                // ...
+                alert("Ny bruker lagt til");
+                location.replace("personalia.html");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+                alert("Feilmelding " + errorMessage);
+            });
+    })
+</script>
 
 </body>
 </html>

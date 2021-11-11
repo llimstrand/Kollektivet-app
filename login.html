@@ -60,12 +60,12 @@
     <p>Logg inn</p>
 
     <form>
-        <p><input placeholder=" Brukernavn" class="tekstboks" type="text"></p>
-        <p><input placeholder=" Passord" class="tekstboks" type="password"></p>
+        <p><input placeholder=" Brukernavn" class="tekstboks" type="text" id="emaillogin"></p>
+        <p><input placeholder=" Passord" class="tekstboks" type="password" id="passlogin"></p>
     </form>
 
     <p>
-        <button class="login"><a href="oppgaver.html" style="color: white; text-decoration: none">Logg inn</a> </button>
+        <button class="login" id="login">Logg inn</button>
     </p> <br> <br>
 
     <p class="nybruker"> Ny bruker?
@@ -74,6 +74,47 @@
 
 </div>
 
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyC-h5KwaI2lRtQiK4vzAg0y2ODCEAcAm4Y",
+        authDomain: "registrer-loggin.firebaseapp.com",
+        databaseURL: "https://registrer-loggin-default-rtdb.europe-west1.firebasedatabase.app/",
+        projectId: "registrer-loggin",
+        storageBucket: "registrer-loggin.appspot.com",
+        messagingSenderId: "753564831618",
+        appId: "1:753564831618:web:abfe5116635b66e141099b"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("login").addEventListener('click', function(){
+
+        const email1 = document.getElementById("emaillogin").value;
+        const password1 = document.getElementById("passlogin").value;
+
+        signInWithEmailAndPassword(auth, email1, password1)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // ...
+                location.replace("oppgaver.html");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert("Feil passord eller brukernavn " + errorMessage);
+            });
+    })
+</script>
 
 </body>
 </html>
