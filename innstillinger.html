@@ -99,10 +99,41 @@
 </div>
     
 <div class="center">
-    <a href="index.html">
-        <button class="btn">Logg ut</button>
-    </a>
+        <button class="btn" id="signout">Logg ut</button>
 </div>
-    
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyC-h5KwaI2lRtQiK4vzAg0y2ODCEAcAm4Y",
+        authDomain: "registrer-loggin.firebaseapp.com",
+        databaseURL: "https://registrer-loggin-default-rtdb.europe-west1.firebasedatabase.app/",
+        projectId: "registrer-loggin",
+        storageBucket: "registrer-loggin.appspot.com",
+        messagingSenderId: "753564831618",
+        appId: "1:753564831618:web:abfe5116635b66e141099b"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("signout").addEventListener('click', function(){
+
+        const auth = getAuth();
+
+        signOut(auth).then(() => {
+            location.replace("index.html");
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorCode + errorMessage);
+        });
+    })
+
+</script>
 </body>
 </html>
