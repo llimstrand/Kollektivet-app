@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Kollektivet 7A</title>
+
     <style>
         body,html{
             margin: 0;
@@ -59,20 +60,166 @@
             height: 20%px;
         }
 
-        button {
-            background-color: #ff9f1c;
-            border: none;
-            color: white;
-            border-radius: 50px;
-            margin: 10px;
+
+
+
+
+        .box-one {
+            background-color: white;
             padding: 10px;
-            text-align: center;
+            height: 100px;
+            width: 100px;
+            border: 30px solid #2ec4b6;
+            margin: 0px;
         }
+
+        .box-two {
+
+
+            background-color: white;
+            border-color: aqua;
+            border-radius: 11px;
+            padding: 2px;
+            margin: 1.3em;
+            border-width: medium;
+            border-style: solid;
+            line-height: 2.6em;
+
+            }
+
+        .spør {
+            border: 3px solid  #cbf3f0;
+            background-color: #cbf3f0;
+            width: 20%;
+            border-radius: 11px;
+            padding: 25px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .svar2  {
+            position:absolute; right:100px;
+            position:absolute; bottom:100px;
+            border: 3px solid  #2ec4b6;
+            border-radius: 11px;
+            background-color: #2ec4b6;
+            width: 50%;
+            text-align: right;
+            padding: 25px;
+            margin: 10px 0;
+        }
+
+
+        .svar3  {
+
+
+            border: 3px solid  #cbf3f0;
+            background-color: #cbf3f0;
+            width: 122px;
+            border-radius: 11px;
+            text-align: right;
+            padding: 25px;
+            margin: 10px 0;
+        }
+
+
+
+
+
+
+
     </style>
 <body>
 <header>Chat</header>
 
-<button>+</button>
+<div class = "box-two">
+<div class = "spør">
+<span class =  "time-left"> Hei, går det greit om jeg kommer på besøk neste lørdag? </span>
+</div>
+
+
+<div class= "svar2">
+    <span class="time-right">Det passer bra, skal bort neste helg!</span>
+</div>
+
+<div class = "svar3">
+        <span class =  "time-right"> tommel opp </span>
+
+
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style media="screen">
+
+            /* Alle classene i koden er her, har ikke lagt til noe css */
+            *{
+
+
+            }
+            /*Er for selve chattmelding området */
+            .container{
+
+            }
+            /* Stilen til individe chattmeldinger */
+            .boxText{
+
+            }
+            /* Stilen til input og button elementet */
+            .textInput{
+
+
+                position:absolute; bottom:60px;
+            }
+            /* Button element */
+            .button{
+                background: #2ec4b6;
+                border: 3px solid  #2ec4b6;
+
+            }
+            </div>
+
+
+        </style>
+    </head>
+    <body>
+    <!-- Alle nye chatboxer blir lagret inni denne diven -->
+    <!-- Du kan også legge i bokser manuelt og bruke samme css -->
+    <div class="container" id="textField">
+        <!-- <div class="boxText">
+              <p></p>
+              </div>
+          -->
+    </div>
+    <!-- Her blir input elementet hentet ut med id="type"
+        og funksjonen visTekst() kalles på ved knappen -->
+    <div class="textInput">
+        <input type="text" id="type">
+        <button class="button" onclick="visTekst()">SEND</button>
+    </div>
+
+    <script type="text/javascript">
+        /* Her kalles på textField så vi kan bruke det senere */
+        var felt = document.getElementById("textField");
+
+        /* Funksjon visTekst() legger inn input feltet vårt lagret
+          i type (type.value), og sender inn en ny div i textField */
+        function visTekst(){
+            felt.innerHTML += `
+    <div class="boxText">
+      <p>${type.value}</p>
+    </div>
+    `;
+            document.getElementById("type").value = null;
+        }
+    </script>
+    </body>
 
 <footer>
     <nav>
@@ -82,6 +229,5 @@
         <a href="personalia.html">Personalia</a>
     </nav>
 </footer>
-
 </body>
 </html>
