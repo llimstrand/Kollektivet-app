@@ -145,6 +145,45 @@
     textarea {
       resize: none;
     }
+    .felt{
+      position: fixed;
+      bottom: 10%;
+      height: 8%;
+      background-color: #58bae4;
+      width: 100%;
+      text-align: center;
+      display: inline-flex;
+      padding: 2%;
+    }
+    .felt input{
+      width: 88%;
+    }
+    .felt button{
+      width: 8%;
+      background-color: #065c56;
+    }
+    i{
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 3px;
+    }
+    .arrow{
+      transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+    }
+    .boxtekst {
+      background-color: lightblue;
+      padding: 15px;
+      width: 50%;
+      max-width: max-content;
+      margin-bottom: 10px;
+      border-radius: 20px 20px 20px 0px;
+    }
+    .container {
+      width: 90%;
+      margin: 5%;
+    }
   </style>
 </head>
 
@@ -153,7 +192,7 @@
     <section id="todolist">
       <div class="navigering">
         <div class="tabs">
-          <button type="button" name="button">GÅ TILBAKE</button>
+          <button type="button" name="button" onclick="window.location.href='oppgaver.html';">GÅ TILBAKE</button>
         </div>
         <div class="tabs">
           <input type="text" class="editItem" style="display:none">Vask Badet</input>
@@ -173,24 +212,18 @@
     </section>
   </header>
   <input type="text" id="inpTODO" placeholder="Hva må jeg huske å gjøre?" autofocus>
-  <p>
-
-  </p>
   <textarea name="Beskrivelse" id="" cols="30" rows="7"> Beskrivelse: Gulvet, toalettet, vasken og dusjen skal vaskes.
   Sjekk at tørketrommel er tømt for vann. Fyll også på dopapir og såpe:)
   </textarea>
-  <ul>
-    <li>
-      <button>+</button>
-     Sofie:<3
-      <br> <br>
-      <button>+</button>
-      Fredrik: Bra jobba!
-    <br> <br>
-      <button>+</button>
-      Tor: Tommel opp
-    </li>
-  </ul>
+    <div class="container">
+      <p class="boxtekst">Sofie:<3</p>
+      <p class="boxtekst">Fredrik:Bra jobba!</p>
+      <p class="boxtekst">Tor: Tommel opp</p>
+    </div>
+  <div class="felt">
+    <input type="text" placeholder="Kommenter oppgave">
+    <button><i class="arrow"></i></button>
+  </div>
   <footer>
     <nav>
       <a class="current" href="oppgaver.html">Oppgaver</a>
