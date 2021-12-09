@@ -15,13 +15,14 @@
 
         footer{
             border-top: 1px solid gray;
-            position: fixed;
+            position: fixed; /*få navigeringsbaren til å alltid vises*/
             bottom: 0;
             width: 100%;
             background-color: white;
             height: 10%;
         }
-
+        
+        /* få navigeringsbaren til å strekke ut til siden, på en rad i oppdelte sider*/
         nav{
             display: flex;
             column: flex-direction;
@@ -29,7 +30,6 @@
             flex-direction: row;
             height: 100%;
         }
-
         nav a{
             display: flex;
             color: grey;
@@ -40,13 +40,11 @@
             font-size: 14px;
             flex: 1;
         }
-
         nav a:hover{
             font-size: 16px;
             color: white;
             background-color: #ff9f1c;
         }
-        
         .current{
             font-size: 16px;
             color: white;
@@ -55,13 +53,11 @@
         .marie{
             color: #cbf3f0;
             text-align: center;
-
-
         }
         .boks{
             background-color: #dff7f7;
             color: #065c56;
-            position: absolute;
+            position: absolute; /* få boksen til å holde seg på bunn, linket til "bottom: 0;" */
             text-align: center;
             width: 100%;
             border-top-right-radius: 30px;
