@@ -17,7 +17,7 @@
     .pil{
         color: #065c56;
         text-decoration: none;
-        position: absolute;
+        position: absolute; /*få pilen til å ikke følge annen "plasserings-kode"*/
         left: 10%;
         font-size: xx-large;
         top: 2.5%;
@@ -35,7 +35,7 @@
     img{
         padding-right: 10%;
         padding-top: 3px;
-        position: absolute;
+        position: absolute; /*få bryteren til å ikke følge annen "plasserings-kode"*/
         right: 0;
 
 
@@ -61,12 +61,11 @@
 
 <p class="tillat">
     Tillat push varslinger
-
-
     <img  id="myImage" onclick="changeImage()" src="off2.jpg" height="15" width="30"/>
-
 </p>
+    
 <br>
+    
 <div class="alt" id="box">
     <p>Kommentarer <img  src="on2.jpg" height="15" width="30"/></p>
     <p>Nye oppgaver <img  src="on2.jpg" height="15" width="30"/></p>
@@ -75,7 +74,8 @@
     <p>Nye hendelsen <img   src="on2.jpg" height="15" width="30"/></p>
 </div>
 
-<script>
+<!-- Gjøre at bryteren "fungerer" ved å bytte ut bildet med en bryter som er på. Samtidig vise andre alternativ (div) dersom bryteren er på -->
+<script> 
     function changeImage() {
         var image = document.getElementById('myImage');
         if (image.src.match("on")) {
