@@ -26,7 +26,7 @@
             border-top-right-radius: 30px;
             text-align: center;
             height: 550px;
-            position: absolute;
+            position: absolute; /*for å få boksen til å ligge på bunnen*/
             width: 100%;
             bottom: 0;
         }
@@ -35,13 +35,12 @@
             border: 2px solid #065c56;
             height: 50px;
             width: 80%;
-            -webkit-appearance: none;
+            -webkit-appearance: none; /*fjerner standarden som ligger på tekstbokser*/
         }
         .registrer{
             background-color: #ff9f1c;
             color: white;
             border: none;
-            cursor: pointer;
             padding: 15px;
             border-radius: 30px;
             margin-left: 62%;
@@ -59,6 +58,7 @@
 <p><h1>Kollektivet</h1></p>
 
 <div class="reg">
+    
     <p>Registrer bruker</p>
 
     <form>
@@ -69,11 +69,12 @@
 
     <p>
         <button class="registrer" id="signup">Registrer</button>
-    </p>
-    <br>
+    </p> <br>
+    
     <p class="logginn"> Allerede bruker?
         <a href="login.html" style="text-decoration: underline; color: #065c56">Logg inn</a>
     </p>
+    
 </div>
 
 <script type="module">
