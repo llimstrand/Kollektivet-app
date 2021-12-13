@@ -6,24 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Legg til Oppgaver</title>
     <style media="screen">
+        /* Stilen for hele siden */
         *{
             margin: 0;
             padding: 0;
             font-family: Bahnschrift;
         }
+
+        /* Standard for alle elementer på siden */
         body{
             text-align: center;
             color: #065c56;
         }
 
+        /* Overskriftens bakgrunn */
         header{
             background-color: #065c56;
             text-align: center;
         }
+
+        /* Overskriften */
         h1{
             color: white;
         }
 
+        /* Nederste feltet, posisjonen er fiksert */
         footer{
             border-top: 1px solid gray;
             position: fixed;
@@ -33,6 +40,7 @@
             height: 10%;
         }
 
+        /* Navigering av sidene nederst på siden, alle er i et grid ved siden av hverandre */
         nav{
             display: flex;
             column: flex-direction;
@@ -41,6 +49,7 @@
             height: 100%;
         }
 
+        /* Hyperlenke til de ulike sidene, alle har lik størrelse og teksten er midtstilt */
         nav a{
             display: flex;
             color: grey;
@@ -52,18 +61,21 @@
             flex: 1;
         }
 
+        /* Ved musepeker over hyperlenkene endres fargen og størrelsen på teksten */
         nav a:hover{
             font-size: 16px;
             color: white;
             background-color: #ff9f1c;
         }
 
+        /* Siden brukeren er på er markert oransj */
         .current{
             font-size: 16px;
             color: white;
             background-color: #ff9f1c;
         }
 
+        /* Navigering mellom ny oppgave og ny hendelse, alle er i row */
         .navigering{
             display: flex;
             column: flex-direction;
@@ -72,6 +84,7 @@
             background-color: #065c56;
         }
 
+        /* Stilen for siden brukeren er inne på */
         .tabs{
             display: flex;
             color: black;
@@ -85,6 +98,7 @@
             border-radius: 20px 20px 0 0;
         }
 
+        /* Stilen for navigerings baren hvor brukeren ikke er inne på */
         .tabs2{
             display: flex;
             color: black;
@@ -99,15 +113,19 @@
             opacity: 50%;
         }
 
+        /* Ved musepeker over endres gjennomsiktigheten */
         .navigering a:hover{
             opacity: 100%;
         }
+
+        /* Div for header */
         .title{
             display: inline-flex;
             width: 100%;
             margin-bottom: 2%;
         }
 
+        /* Knapp for å godta oppgaven */
         #godta{
             width: 50px;
             height: 50px;
@@ -115,12 +133,16 @@
             padding-right: 10px;
 
         }
+
+        /* Knapp for å slette oppgaven */
         #slett{
             width: 50px;
             height: 50px;
             float: left;
             padding-left: 10px;
         }
+
+        /* Lengden på knappene */
         .slettPos{
             width: 50%;
         }
@@ -128,12 +150,15 @@
             width: 50%;
         }
 
+        /* Input felt for oppgave */
         #inpTODO{
             border-top: none;
             border-right: none;
             border-left: none;
             width: 70%;
         }
+
+        /* Seksjonen til input-feltene, lengden og høyden */
         .hoved{
             width: 70%;
             margin: 0 15% 0 15%;
@@ -160,7 +185,7 @@
 </head>
 <body>
 <header>
-    <h1>Oppgave</h1>
+    <h1>Legg til ny oppgave</h1>
     <div class="title">
         <div class="slettPos">
             <a href="oppgaver.html"><img src="redx.png" alt="" id="slett"></a>
@@ -233,7 +258,7 @@
 
 <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
 <script>
-    // Initialize Firebase
+    // Initialiser Firebase
     var config = {
         apiKey: "AIzaSyAwvAa3eebvLguf3r67sYeEET24Jm0K4CM",
         authDomain: "todos-a09b1.firebaseapp.com",
@@ -246,12 +271,15 @@
 </script>
 <script>
 
+    // Henter ut id og lagrer den til senere
     var inpTODO = document.getElementById("inpTODO")
     var todolist = document.getElementById("todolist")
 
+    // Henter ut databasen
     var database = firebase.database();
     var todos = database.ref("todos");
 
+    // Lagrer input feltet inn i databasen
     function lagreTodo(){
         todos.push({
             tekst: inpTODO.value,
@@ -262,6 +290,7 @@
         inpTODO.focus();
     }
 
+    // Slett funksjon for oppgaven
     function slett(pk) {
         var todo = todos.child(pk);
         todo.remove();
@@ -269,6 +298,7 @@
         todolist.removeChild(div);
     }
 
+    // Viser input feltet
     function visTodo(snap){
 
         var pk = snap.key;

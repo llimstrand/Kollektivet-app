@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
     <style>
+        /* Stil for hele siden */
         body, html{
             background-color: #065c56;
             font-family: Bahnschrift;
             padding: 0;
             margin: 0;
         }
+
+        /* Overskriften */
         h1{
             color: #cbf3f0;
             text-align: center;
             font-size: xxx-large;
         }
+
+        /* Felt for selve registreringen */
         .reg{
             background-color: #cbf3f0;
             color: #065c56;
@@ -30,6 +34,8 @@
             width: 100%;
             bottom: 0;
         }
+
+        /* Input felt for email og passord */
         .tekstboks{
             border-radius: 30px;
             border: 2px solid #065c56;
@@ -37,6 +43,8 @@
             width: 80%;
             -webkit-appearance: none; /*fjerner standarden som ligger på tekstbokser*/
         }
+
+        /* Knappen for registreringen */
         .registrer{
             background-color: #ff9f1c;
             color: white;
@@ -46,6 +54,8 @@
             margin-left: 62%;
             cursor: pointer;
         }
+
+        /* Tekst for innlogging */
         .logginn{
             color: #065c56;
             cursor: pointer;
@@ -78,13 +88,13 @@
 </div>
 
 <script type="module">
-    // Import the functions you need from the SDKs you need
+    // Importer funksjonene som trengs fra SDK, bare funksjoner for registrering
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
-    // Your web app's Firebase configuration
+    // Vår web app Firebase konfigurasjon
     const firebaseConfig = {
         apiKey: "AIzaSyC-h5KwaI2lRtQiK4vzAg0y2ODCEAcAm4Y",
         authDomain: "registrer-loggin.firebaseapp.com",
@@ -95,23 +105,28 @@
         appId: "1:753564831618:web:abfe5116635b66e141099b"
     };
 
-    // Initialize Firebase
+    // Initialiser Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // Funksjonen som settes igang ved registrering
     document.getElementById("signup").addEventListener('click', function(){
+
+        // Henter ut verdien fra begge input feltene
         const email = document.getElementById("email").value;
         const password = document.getElementById("pass").value;
 
+        // Kjør funksjonen createUserWithEmailAndPassword og lagre den i databasen
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Signed in
+                // Logg inn
                 const user = userCredential.user;
 
-                // ...
+                // Send brukeren en melding at brukeren er lagd og send dem til neste side
                 alert("Ny bruker lagt til");
                 location.replace("personalia.html");
             })
+            // Hvis brukeren ikke har lagt inn en email eller passord send ut en feilmelding
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;

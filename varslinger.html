@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
     <style>
+        /* Stilen for hele siden */
         body, html{
             font-family: Bahnschrift;
             margin: 0;
@@ -14,48 +14,55 @@
             text-align: center;
             color: #065c56;
         }
-    .pil{
-        color: #065c56;
-        text-decoration: none;
-        position: absolute; /*få pilen til å ikke følge annen "plasserings-kode"*/
-        left: 10%;
-        font-size: xx-large;
-        top: 2.5%;
-    }
-    .tillat{
-        background-color: #dfebe9;
-        border-top: 1px solid #065c56;
-        border-bottom: 1px solid #065c56;
-        width: 80%;
-        margin: auto;
-        margin-bottom: 5%;
-        padding: 20px;
-        text-align: left;
-    }
-    img{
-        padding-right: 10%;
-        padding-top: 3px;
-        position: absolute; /*få bryteren til å ikke følge annen "plasserings-kode"*/
-        right: 0;
 
+        /* Pilen øverst på siden */
+        .pil{
+            color: #065c56;
+            text-decoration: none;
+            position: absolute; /*få pilen til å ikke følge annen "plasserings-kode"*/
+            left: 10%;
+            font-size: xx-large;
+            top: 2.5%;
+        }
 
-    }
-    .alt p{
-        background-color: #dfebe9;
-        width: 80%;
-        margin: auto;
-        margin-bottom: 2%;
-        padding: 20px;
-        text-align: left;
-    }
-    #box{
-        display: none;
-    }
+        /* Størrelse, posisjon og farge til alternativet */
+        .tillat{
+            background-color: #dfebe9;
+            border-top: 1px solid #065c56;
+            border-bottom: 1px solid #065c56;
+            width: 80%;
+            margin: auto;
+            margin-bottom: 5%;
+            padding: 20px;
+            text-align: left;
+        }
+
+        img{
+            padding-right: 10%;
+            padding-top: 3px;
+            position: absolute; /*få bryteren til å ikke følge annen "plasserings-kode"*/
+            right: 0;
+        }
+
+        /* Margin og størrelse til alternativene */
+        .alt p{
+            background-color: #dfebe9;
+            width: 80%;
+            margin: auto;
+            margin-bottom: 2%; /* Mellomrommet */
+            padding: 20px;
+            text-align: left;
+        }
+
+        /* Alternativene er ikke vist ved oppstart av siden */
+        #box{
+            display: none;
+        }
     </style>
 
 <body>
 <h2>
-    <a class="pil" href="innstillinger.html"> < </a>
+    <a class="pil" href="innstillinger.html">&#x21E6;</a>
     Varslinger og lyd
 </h2>
 

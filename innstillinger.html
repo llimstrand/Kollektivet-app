@@ -6,12 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style media="screen">
+        /* Stilen for hele siden */
         *{
             margin: 0;
             padding: 0;
             font-family: Bahnschrift;
             text-align: center;
         }
+
+        /* Overskrift */
         header{
             height: 10%;
         }
@@ -19,12 +22,16 @@
             padding: 20px;
             color: #065c56;
         }
+
+        /* Hoved div til innstilling alternativer */
         .main{
             text-align: center;
             border-radius: 20px;
             background-color: lightblue;
             margin: 0 20px 0 20px;
         }
+
+        /* Farge og størrelse på innstillings alternativene */
         .stil{
             color: #065c56;
             padding: 15px;
@@ -43,6 +50,8 @@
         .center{
             text-align: center;
         }
+
+        /* Knappen nederst på siden */
         .btn{
             bottom: 20%;
             position: absolute;
@@ -60,7 +69,8 @@
             border: 1px solid black;
             cursor: pointer;
         }
-        
+
+        /* Pil øverst, posisjon og farge */
         .pil{
             color: #065c56;
             text-decoration: none;
@@ -74,7 +84,7 @@
 <body>
     
 <header>
-    <a class="pil" href="personalia.html"> </a>
+    <a class="pil" href="personalia.html">&#x21E6;</a>
     <h1>Innstillinger</h1>
 </header>
     
@@ -102,11 +112,11 @@
         <button class="btn" id="signout">Logg ut</button>
 </div>
 <script type="module">
-    // Import the functions you need from the SDKs you need
+    // Importer funksjonene som trengs fra SDK, bare funksjoner for registrering
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
     import { getAuth, signOut, onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
-    // Your web app's Firebase configuration
+    // Vår web app Firebase konfigurasjon
     const firebaseConfig = {
         apiKey: "AIzaSyC-h5KwaI2lRtQiK4vzAg0y2ODCEAcAm4Y",
         authDomain: "registrer-loggin.firebaseapp.com",
@@ -117,10 +127,13 @@
         appId: "1:753564831618:web:abfe5116635b66e141099b"
     };
 
-    // Initialize Firebase
+    // Initialiser Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // Hent id fra HTML koden og start funksjonen
+    // Logg ut brukeren som er logget inn og send brukeren til index.html
+    // Hvis noe går feil, send ut feilmelding
     document.getElementById("signout").addEventListener('click', function(){
 
         const auth = getAuth();

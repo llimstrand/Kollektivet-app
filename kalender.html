@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style media="screen">
+        /* Stilen for hele siden */
         *{
             margin: 0;
             padding: 0;
             font-family: Bahnschrift;
         }
+
+        /* Overskrift feltet */
         header{
             text-align: center;
             color: white;
@@ -20,12 +22,15 @@
             border: none;
         }
 
+        /* Stilen for hele kalender feltet */
         section{
             display: flex;
             padding: 50px 0 0 0;
             justify-content: center;
             background-color: #FFFFFF;
         }
+
+        /* Nederste feltet, posisjonen er fiksert */
         footer{
             border-top: 1px solid gray;
             position: fixed;
@@ -34,6 +39,8 @@
             background-color: white;
             height: 10%;
         }
+
+        /* Navigering av sidene nederst på siden, alle er i et grid ved siden av hverandre */
         nav{
             display: flex;
             column: flex-direction;
@@ -42,6 +49,7 @@
             height: 100%;
         }
 
+        /* Hyperlenke til de ulike sidene, alle har lik størrelse og teksten er midtstilt */
         nav a{
             display: flex;
             color: grey;
@@ -53,17 +61,21 @@
             flex: 1;
         }
 
+        /* Ved musepeker over hyperlenkene endres fargen og størrelsen på teksten */
         nav a:hover{
             font-size: 16px;
             color: white;
             background-color: #ff9f1c;
         }
 
+        /* Siden brukeren er på er markert oransj */
         .current{
             font-size: 16px;
             color: white;
             background-color: #ff9f1c;
         }
+
+        /* Stil for knappene for kalenderen */
         button {
             width: 75px;
             cursor: pointer;
@@ -75,6 +87,7 @@
             color: white;
         }
 
+        /* Posisjonerer elementene ved siden av hverandre */
         #header {
             padding: 10px;
             color: #065c56;
@@ -83,11 +96,11 @@
             display: flex;
             justify-content: space-between;
         }
-
         #header button {
             background-color: #ff9f1c;
         }
 
+        /* CSS for selve kalenderen */
         #container {
             width: 90%;
             height: 80%;
@@ -152,6 +165,7 @@
             box-shadow: none !important;
         }
 
+        /* CSS for pop-up boksen for kalenderen */
         #newEventModal,
         #deleteEventModal {
             display: none;
@@ -162,7 +176,6 @@
             border-radius: 5px;
             width: 50%;
             top: 30%;
-            left: 23%;
             position: absolute;
             font-family: sans-serif;
         }
@@ -206,6 +219,8 @@
             position: absolute;
             background-color: rgba(0, 0, 0, 0.8);
         }
+
+        /* Setter størrelsen på knappene ved mindre skjerm */
         @media (max-width: 650px){
             button{
                 width: 50px;
@@ -270,10 +285,12 @@
 </footer>
 </body>
 <script type="text/javascript">
+    // Setter verdien til kalenderen og henter ut data fra JSON-string
     let nav = 0;
     let clicked = null;
     let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
+    // Setter konstanter ved å ta ID-er fra HTML koden
     const calendar = document.getElementById('calendar');
     const newEventModal = document.getElementById('newEventModal');
     const deleteEventModal = document.getElementById('deleteEventModal');
@@ -281,6 +298,8 @@
     const eventTitleInput = document.getElementById('eventTitleInput');
     const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
+    // Ved klikk på en dag sjekker funksjonen om det er et tidligere event eller nytt
+    // Den viser enten deleteEventModal eller newEventModal
     function openModal(date) {
         clicked = date;
 
@@ -296,6 +315,8 @@
         backDrop.style.display = 'block';
     }
 
+    // Funksjon for å sjekke hvilken måned og dag det er.
+    // Deretter endres kalenderens måned og hvilken dag kalenderen starter på.
     function load() {
         const dt = new Date();
 
@@ -353,6 +374,7 @@
         }
     }
 
+    // Funksjon for å lukke Modal ved trykk på knappen
     function closeModal() {
         eventTitleInput.classList.remove('error');
         newEventModal.style.display = 'none';
@@ -363,6 +385,7 @@
         load();
     }
 
+    // Funksjon for å lagre event-tittelen i en JSON-string
     function saveEvent() {
         if (eventTitleInput.value) {
             eventTitleInput.classList.remove('error');
@@ -379,12 +402,15 @@
         }
     }
 
+    // Slette funksjon, ved trykk slettes tittelen i JSON-string og lukker Modal
     function deleteEvent() {
         events = events.filter(e => e.date !== clicked);
         localStorage.setItem('events', JSON.stringify(events));
         closeModal();
     }
 
+    // Ved trykk av tilbake eller neste knappen endres nav.
+    // Dette gjøres ved å legge til (++) eller trekke fra (--)
     function initButtons() {
         document.getElementById('nextButton').addEventListener('click', () => {
             nav++;

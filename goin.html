@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style media="screen">
+    /* Stilen for hele siden */
     * {
       margin: 0;
       padding: 0;
       font-family: Bahnschrift;
     }
 
+    /* Nederste feltet, posisjonen er fiksert */
     footer {
       border-top: 1px solid gray;
       position: fixed;
@@ -22,6 +23,7 @@
       height: 10%;
     }
 
+    /* Navigering av sidene nederst på siden, alle er i et grid ved siden av hverandre */
     nav {
       display: flex;
       column: flex-direction;
@@ -30,6 +32,7 @@
       height: 100%;
     }
 
+    /* Hyperlenke til de ulike sidene, alle har lik størrelse og teksten er midtstilt */
     nav a {
       display: flex;
       color: grey;
@@ -41,18 +44,21 @@
       flex: 1;
     }
 
+    /* Ved musepeker over hyperlenkene endres fargen og størrelsen på teksten */
     nav a:hover {
       font-size: 16px;
       color: white;
       background-color: #ff9f1c;
     }
 
+    /* Siden brukeren er på er markert oransj */
     .current {
       font-size: 16px;
       color: white;
       background-color: #ff9f1c;
     }
 
+    /* Navigering mellom gå tilbake og rediger, alle er i row */
     .navigering {
       display: flex;
       column: flex-direction;
@@ -62,6 +68,7 @@
       height: 100%;
     }
 
+    /* Setter innhold i navigering ved siden av hverandre */
     .tabs {
       display: flex;
       text-decoration: none;
@@ -72,30 +79,37 @@
       flex: 1;
     }
 
+    /* Knapp for redigering */
     .navigering button {
       border: none;
       background-color: white;
       color: #065c56;
+      cursor: pointer;
     }
 
+    /* Setter høyden på toppen */
     header {
       height: 10%;
     }
 
+    /* Gjemmer input feltet */
     #inpTODO {
       visibility: hidden;
     }
 
+    /* Dropdown farge */
     .dropbtn {
       color: white;
       border: none;
     }
 
+    /* Dropdown posisjon og innhold */
     .dropdown {
       position: relative;
       display: inline-block;
     }
 
+    /* Stilen til innholdet til dropdown */
     .dropdown-content {
       display: none;
       position: absolute;
@@ -107,6 +121,7 @@
       border-radius: 15px;
     }
 
+    /* Stilen for hyperlenkene */
     .dropdown-content a {
       color: #065c56;
       padding: 12px 16px;
@@ -118,17 +133,18 @@
       text-align: center;
     }
 
+    /* Dropdown hover */
     .dropdown-content a:hover {
       background-color: #ddd;
     }
-
     .dropdown:hover .dropdown-content {
       display: block;
     }
-
     .dropdown:hover .dropbtn {
       cursor: pointer;
     }
+
+    /* Dropdown topp og bunn */
     .top{
       margin-top: 25px;
     }
@@ -142,9 +158,13 @@
       opacity: 1;
       cursor: pointer;
     }
+
+    /* Tekstområde */
     textarea {
       resize: none;
     }
+
+    /* Kommentere oppgave input felt */
     .felt{
       position: fixed;
       bottom: 10%;
@@ -172,6 +192,8 @@
       transform: rotate(-135deg);
       -webkit-transform: rotate(-135deg);
     }
+
+    /* Tekstbokser */
     .boxtekst {
       background-color: lightblue;
       padding: 15px;
@@ -197,7 +219,9 @@
     <section id="todolist">
       <div class="navigering">
         <div class="tabs">
-          <button type="button" name="button" onclick="window.location.href='oppgaver.html';">GÅ TILBAKE</button>
+          <div>
+            <button type="button" name="button" onclick="window.location.href='oppgaver.html';">GÅ TILBAKE</button>
+          </div>
         </div>
         <div class="tabs">
           <input type="text" class="editItem" style="display:none">Vask Badet</input>
