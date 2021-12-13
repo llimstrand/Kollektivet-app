@@ -6,18 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        /* Stil for hele siden */
         body,html{
             margin: 0;
             padding: 0;
             font-family: Bahnschrift;
             background-color: #065C56;
         }
+
+        /* Overskriften */
         h1 {
             text-align: center;
             color: #cbf3f0;
             font-size: xxx-large;
 
         }
+
+        /* Felt for selve innloggingen */
         .boks {
             background-color: #cbf3f0;
             bottom: 0;
@@ -31,6 +36,7 @@
             font-size: xx-large;
         }
 
+        /* Input feltene */
         .tekstboks {
             -webkit-appearance: none; /*fjerner standarden som vanligvis ligger på tekstbokser*/
             border-radius: 30px;
@@ -39,6 +45,7 @@
             width: 80%;
         }
 
+        /* Knappen for innlogging */
         .login {
             background-color: #ff9f1c;
             border: none;
@@ -49,6 +56,7 @@
             cursor: pointer;
         }
 
+        /* Tekst for registrering */
         .nybruker {
             font-size: medium;
             color: #065C56;
@@ -76,13 +84,13 @@
 </div>
 
 <script type="module">
-    // Import the functions you need from the SDKs you need
+    // Importer funksjonene som trengs fra SDK, bare funksjoner for innlogging
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
-    // Your web app's Firebase configuration
+    // Vår web app Firebase konfigurasjon
     const firebaseConfig = {
         apiKey: "AIzaSyC-h5KwaI2lRtQiK4vzAg0y2ODCEAcAm4Y",
         authDomain: "registrer-loggin.firebaseapp.com",
@@ -93,22 +101,26 @@
         appId: "1:753564831618:web:abfe5116635b66e141099b"
     };
 
-    // Initialize Firebase
+    // Initialiser Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // Funksjonen som settes igang ved knappen
     document.getElementById("login").addEventListener('click', function(){
 
+        // Henter ut verdiene fra begge input feltene
         const email1 = document.getElementById("emaillogin").value;
         const password1 = document.getElementById("passlogin").value;
 
+        // Kjør funksjonen signInWithEmailAndPassword og sjekk om dataen stemmer med databasen
         signInWithEmailAndPassword(auth, email1, password1)
             .then((userCredential) => {
-                // Signed in
+                // Logg inn brukeren
                 const user = userCredential.user;
-                // ...
+                // Send brukeren til neste side
                 location.replace("oppgaver.html");
             })
+            // Hvis passord eller email er feil, send ut feilmelding
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
